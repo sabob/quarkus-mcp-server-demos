@@ -1,4 +1,4 @@
-# quarkus-mcp-server-demos
+# quarkus-mcp-server-input-schema-issue
 
 ### Problem
 Input schema generated for method:
