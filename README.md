@@ -1,5 +1,6 @@
 # quarkus-mcp-server-demos
 
+### Problem
 Input schema generated for method:
 `hello(Person person)`
 
@@ -40,3 +41,8 @@ Input schema generated with @Valid:
           ]
         }
 ```
+
+### Usage
+Use Intellij HttpClient.    
+Run all the requests in `test/http/mcp.http` to setup the McpSessionId.  
+To view the input schema, run the request `Tools List`
