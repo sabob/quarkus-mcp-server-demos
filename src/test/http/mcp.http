@@ -1,0 +1,78 @@
+@bearer_token=test
+@base-url=http://localhost:8080
+
+### Initialize
+# @name initialize
+POST {{base-url}}/mcp
+authorization: Bearer {{bearer_token}}
+Content-Type: application/json
+Accept: application/json, text/event-stream
+
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "method": "initialize",
+  "params": {
+    "protocolVersion": "2025-03-26",
+    "capabilities": {
+      "roots": {
+        "listChanged": true
+      },
+      "sampling": {}
+    },
+    "clientInfo": {
+      "name": "ExampleClient",
+      "version": "1.0.0"
+    }
+  }
+}
+
+> {%
+    client.global.set("sessionId", response.headers.valueOf("Mcp-Session-Id"));
+%}
+
+### Initialized
+POST {{base-url}}/mcp
+authorization: Bearer {{bearer_token}}
+Content-Type: application/json
+Accept: application/json, text/event-stream
+Mcp-Session-Id: {{sessionId}}
+
+{
+  "jsonrpc": "2.0",
+  "method": "notifications/initialized"
+}
+
+### Tools List
+POST {{base-url}}/mcp
+authorization: Bearer {{bearer_token}}
+Content-Type: application/json
+Accept: application/json, text/event-stream
+Mcp-Session-Id: {{sessionId}}
+
+{
+  "jsonrpc": "2.0",
+  "id": 8,
+  "method": "tools/list"
+}
+
+### Hello World
+POST {{base-url}}/mcp
+authorization: Bearer {{bearer_token}}
+Content-Type: application/json
+Accept: application/json, text/event-stream
+Mcp-Session-Id: {{sessionId}}
+
+{
+  "jsonrpc": "2.0",
+  "id": 4,
+  "method": "tools/call",
+  "params": {
+    "name": "hello",
+    "arguments": {
+      "person": {
+        "name3": "John"
+      }
+    }
+  }
+}
