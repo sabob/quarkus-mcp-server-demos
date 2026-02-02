@@ -56,6 +56,19 @@ Mcp-Session-Id: {{sessionId}}
   "method": "tools/list"
 }
 
+### Resource List
+POST {{base-url}}/mcp
+authorization: Bearer {{bearer_token}}
+Content-Type: application/json
+Accept: application/json, text/event-stream
+Mcp-Session-Id: {{sessionId}}
+
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "method": "resources/list"
+}
+
 ### Hello World
 POST {{base-url}}/mcp
 authorization: Bearer {{bearer_token}}
@@ -71,8 +84,49 @@ Mcp-Session-Id: {{sessionId}}
     "name": "hello",
     "arguments": {
       "person": {
-        "name3": "John"
+        "name": "John"
       }
     }
   }
 }
+
+### QR
+POST {{base-url}}/mcp
+authorization: Bearer {{bearer_token}}
+Content-Type: application/json
+Accept: application/json, text/event-stream
+Mcp-Session-Id: {{sessionId}}
+
+{
+  "jsonrpc": "2.0",
+  "id": 4,
+  "method": "tools/call",
+  "params": {
+    "name": "generateQr",
+    "arguments": {
+      "text": "https://modelcontextprotocol.io",
+      "boxSize": 10,
+      "border": 4,
+      "errorCorrection": "MEDIUM",
+      "fillColor": "black",
+      "backColor": "white"
+    }
+  }
+}
+
+### MCP App
+POST {{base-url}}/mcp
+authorization: Bearer {{bearer_token}}
+Content-Type: application/json
+Accept: application/json, text/event-stream
+Mcp-Session-Id: {{sessionId}}
+
+{
+  "jsonrpc": "2.0",
+  "id": 2,
+  "method": "resources/read",
+  "params": {
+    "uri": "ui://qr-server/view.html"
+  }
+}
+

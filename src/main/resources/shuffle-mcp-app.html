@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Hello World with External Lib</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+    }
+    #message {
+      font-size: 28px;
+      margin-bottom: 16px;
+      padding: 16px;
+      border-radius: 8px;
+      background-color: #fff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    button {
+      padding: 10px 16px;
+      font-size: 16px;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      background-color: #2196F3;
+      color: white;
+    }
+    button:hover {
+      background-color: #0b7dda;
+    }
+  </style>
+</head>
+<body>
+  <div id="message">Hello World!</div>
+  <button id="shuffleBtn">Shuffle Array</button>
+
+  <!-- External dependency from CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+
+  <script>
+    const btn = document.getElementById('shuffleBtn');
+    const msg = document.getElementById('message');
+
+    const myArray = [1,2,3,4,5,6,7];
+
+    btn.addEventListener('click', () => {
+      // Using Lodash to shuffle array
+      const shuffled = _.shuffle(myArray);
+      msg.textContent = `Shuffled Array: ${shuffled.join(', ')}`;
+    });
+
+    console.log("Page loaded with Lodash from CDN!");
+  </script>
+</body>
+</html>

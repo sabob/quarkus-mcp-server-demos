@@ -7,9 +7,9 @@ import jakarta.validation.Valid;
 @ApplicationScoped
 public class HelloWorldTool {
 
-    @Tool
-    public String hello(Person person) {
-    //public String hello(@Valid Person person) { // Adding @Valid annotation breaks Input Schema generation
-        return "Hello";
-    }
+  @Tool
+  public String hello(
+      @Valid Person person) { // Adding @Valid annotation breaks Input Schema generation
+    return "Hello";
+  }
 }
